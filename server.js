@@ -1,4 +1,6 @@
 import express from "express";
+import Client from './pg_con.js'
+
 const app = express();
 
 app.listen(3001, () => {
