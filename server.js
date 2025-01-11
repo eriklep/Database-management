@@ -1,5 +1,5 @@
 import express from "express";
-import Client from './pg_con.js'
+import {pgPool} from './pg_con.js'
 
 const app = express();
 

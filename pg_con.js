@@ -1,12 +1,10 @@
 import pg from 'pg';
 import dotenv from 'dotenv';
-
 dotenv.config();
 
-const app = express();
-const { Client } = pg;
+const {pool} = pg;
 
-const client = new Client({
+const pgPool = new pg.Pool({
     user: process.env.PG_USER,
     password: process.env.PG_PW,
     database: process.env.PG_DB,
@@ -14,4 +12,4 @@ const client = new Client({
     port: process.env.PG_PORT
 });
 
-export default Client; 
+export {pgPool}; 
