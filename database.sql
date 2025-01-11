@@ -1,4 +1,5 @@
 CREATE TABLE Genre (
+    Genre_id SERIAL PRIMARY KEY,
     Name VARCHAR(255)
 );
 
@@ -13,8 +14,8 @@ CREATE TABLE Movie (
     Movie_id INT PRIMARY KEY,
     Name VARCHAR(255) NOT NULL,
     Year INT,
-    Genre_id INT,
-    FOREIGN KEY (Genre_id) REFERENCES Genre(Genre_id)
+    Genre_name VARCHAR(255),
+    FOREIGN KEY (Genre_name) REFERENCES Genre(name)
 );
 
 CREATE TABLE Favorite (
