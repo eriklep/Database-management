@@ -1,15 +1,37 @@
 import express from "express";
-import {pgPool} from './pg_con.js'
+import {pgPool} from './pg_con.js';
 
 const app = express();
+
+
+
 
 app.listen(3001, () => {
     console.log('Server is running in port 3001')
 });
+ 
 
-app.get('/genre', async (req,res) => {
-    res.send('genre')
-}); 
+app.get('/genre', async (req, res) => {
+    try{
+        const result= await pgPool.query('SELECT * FROM genre');
+        res.json(result.rows);
+    }catch(error){
+        res.status(400).json({error: error.message});
+    }
+});
+
+app.post('/genre'), async (req,res) => {
+    const name = req.body; 
+
+    try{
+        await pgPool.query('INSERT INTO genre VALUE ($1)', [name]);
+        res.end;
+    }catch(error){
+        res.status(400).json({error: error.message});
+    }
+};
+
+
 
 app.get('/movie', async (req,res) => {
     res.send('movie')
